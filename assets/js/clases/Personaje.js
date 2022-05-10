@@ -1,4 +1,4 @@
-class Personaje {
+export default class Personaje {
     constructor(nombre, img, poder, raza) {
         this._nombre = () => nombre
         this._img = () => img
@@ -24,4 +24,4 @@ class Personaje {
     }
 }
 
-console.log(new Personaje('Goku', 'goku.jpg', 'Super Sayajin', 'Saiyajin'))
+//console.log(new Personaje('Goku', 'goku.jpg', 'Super Sayajin', 'Saiyajin'))
