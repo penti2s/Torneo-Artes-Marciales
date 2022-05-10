@@ -9,16 +9,22 @@ document.querySelector('#btnRegistrar').addEventListener('click', async () =>{
     let previewElement = document.querySelector('#preview')
     let img = previewElement.style.backgroundImage;
     let imgSrc = img.slice(4, -1).replace(/"/g, "")
-    let ki = document.querySelector('#poderPelea').value 
+    let ki = document.querySelector('#poderPelea')
 
+    
     let nuevoParticipante;
     if(raza === 'Saiyajin'){
-        nuevoParticipante = new Saiyajin(nombre, imgSrc, ki, raza)
+        nuevoParticipante = new Saiyajin(nombre, imgSrc, ki.value, raza)
     }else{
-        nuevoParticipante = new Humano(nombre, imgSrc, ki, raza)
+        nuevoParticipante = new Humano(nombre, imgSrc, ki.value, raza)
     }
-    participantes.push(nuevoParticipante)
-    reloadTable()
+    if(raza && nombre && imgSrc && ki){
+        participantes.push(nuevoParticipante)
+        limpiarForm(previewElement,ki)
+        reloadTable()
+    }else{
+        alert('Faltan datos')
+    }
 })
 
 const reloadTable = () => {
@@ -41,4 +47,12 @@ const reloadTable = () => {
       </div>`
       console.log(p.img)
     })
+}
+
+const limpiarForm = (previewElement, ki) => {
+    nombre.selectedIndex = 0
+    raza.selectedIndex = 0
+    ki.value = ""
+    previewElement.style.backgroundImage = 'none'
+    previewElement.style.backgroundColor = '#f0f0f0'
 }
