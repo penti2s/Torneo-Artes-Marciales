@@ -5,8 +5,8 @@ class Saiyajin extends Personaje {
         super(nombre, img, poder, raza)
     }
     Transformacion(){
-        let poder = this.poder()
-        this.poder( parseInt( poder * 1.8))
+        let power = this.poder
+        this.poder = ( parseInt( power * 1.8))
     }
 }
 

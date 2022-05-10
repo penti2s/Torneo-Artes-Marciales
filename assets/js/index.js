@@ -42,12 +42,23 @@ const reloadTable = () => {
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Raza : ${p.raza}</li>
           <li class="list-group-item">Poder : ${p.poder}</li>
+          <button type="button" onclick='activarHabilidad(${i})' class="btn btn-warning">Activar Habilidad</button>
           <li class="list-group-item">i = ${i}</li>
         </ul>
       </div>`
       console.log(p.img)
     })
 }
+
+window.activarHabilidad = (i) => {
+    const participante = participantes[i]
+    if(participante.raza === 'Saiyajin'){
+        participante.Transformacion()
+    }else if(participante.raza === 'Humano'){
+        participante.Coraje()
+    }
+    reloadTable()
+} 
 
 const limpiarForm = (previewElement, ki) => {
     nombre.selectedIndex = 0
@@ -56,3 +67,11 @@ const limpiarForm = (previewElement, ki) => {
     previewElement.style.backgroundImage = 'none'
     previewElement.style.backgroundColor = '#f0f0f0'
 }
+
+document.getElementById('btnMasFuerte').addEventListener('click', () => {
+    const masFuerte = participantes.sort((a,b) => b.poder - a.poder)[0]
+    const nombre = masFuerte.nombre
+    console.log(nombre)
+    document.querySelector(`[data-fighter='${nombre}'] div`).style.boxShadow = '0 0 5px 1px yellow'
+
+})
